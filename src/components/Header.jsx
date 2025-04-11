@@ -29,7 +29,7 @@ const HeroSection = () => {
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-600 leading-tight mb-6">
             We Promote Better <br />
-            <span className="text-[#47be07]">Communication</span>
+            <span className="text-[#3d960d]">Communication</span>
           </h1>
           <p className="text-gray-700 mb-10 max-w-2xl leading-relaxed text-lg">
             Welcome to <strong>SpeakLogic.org</strong> — a nonprofit promoting
@@ -39,7 +39,7 @@ const HeroSection = () => {
             to improve rational thinking and understanding.
           </p>
           <div className="flex items-center gap-5 flex-wrap">
-            <button className="bg-[#41aa09] text-white px-8 py-3 text-lg rounded-full font-semibold hover:bg-[#3eaa06] transition shadow-lg hover:scale-105">
+            <button className="bg-[#3d960d] text-white px-8 py-3 text-lg rounded-full font-semibold hover:bg-[#3eaa06] transition shadow-lg hover:scale-105">
               Get Started
             </button>
             <button className="flex items-center gap-3 text-[#333] font-medium group text-lg transition">

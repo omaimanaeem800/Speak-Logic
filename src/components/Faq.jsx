@@ -11,23 +11,29 @@ const faqs = [
   },
   {
     question: "Why does The Speak Logic Project exist?",
-    answer: "",
+    answer: "The importance of communication cannot be disregarded in life. Since everything that we do is driven by communication, when we commit error in communication, there is a chance that the error leads us to make mistakes in what we do. With that, we can see there is a need for better communication. The Speak Logic Project exists to promote better communication by helping people communicate without error",
   },
   {
     question: "What is communication?",
-    answer: "",
+    answer: "Rather than answering this question as it is asked, it is better to substitute it to another question. For instance, what is the importance of communication? Is communication important? Since communication is the driving force of everything that we do, we can see that communication is very important within what we do. We can also say that communication is very important in life.s",
   },
   {
     question: "Why promote better communication?",
-    answer: "",
+    answer: "To understand the importance of communication it is worthwhile to look at the relationship of communication related to what we do. With that, we can look at the relationship of errors that we make in our communications related to problems that we develop in life. To answer this question, see chapter 2 and chapter 3 of Understanding The Principle of Communication for more information.",
   },
   {
     question: "What can I do to get started?",
-    answer: "",
+    answer: `In order to get started, you can do the following.<br>
+    Download the books<br>
+    Do the exercises<br>
+    Participate in the forum<br>
+    Perform analysis of communications that need to be analyzed<br>
+    Refer others to the website or help others to be aware of The Speak Logic Project`,
   },
+  
   {
     question: "Why proper communication is important?",
-    answer: "",
+    answer: "Since a function that we execute is related to our communication, the execution of that function is simply driven by our communication. In this case, if we commit error in the communication that drives the function, the function will also execute with error. If we can identify error in the communication that drives the function and get it corrected, then the function can be executed without error. Since communication drives our functions and proper communications enable us to execute our functions without error, thus proper communication is very important to us.",
   },
 ];
 
