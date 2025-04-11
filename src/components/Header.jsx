@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaPlay, FaCog } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import headerImg1 from "../assets/img1.webp";
 import headerImg2 from "../assets/img2.jpg";
 import headerImg3 from "../assets/img1.webp";
@@ -18,11 +18,28 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Animation for left section (slide from left)
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -200 },
+    visible: { opacity: 1, x: 0, transition: { duration: 1.5, ease: "easeOut" } }, // Slowed down to 1.5s
+  };
+
+  // Animation for right image (pop-up effect)
+  const popUpImage = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 1.5, ease: "easeOut" } }, // Slowed down to 1.5s
+  };
+
   return (
     <section className="bg-gradient-to-br from-[#f0fff0] to-[#f8fcf8] py-22 px-6 md:px-16 lg:px-32 transition-all overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-16">
-        {/* Left Side */}
-        <div className="flex-1 mt-36">
+        {/* Left Side with Slide-In Animation */}
+        <motion.div
+  className="flex-1 mt-16 md:mt-36"
+  initial="hidden"
+          animate="visible"
+          variants={slideInLeft}
+        >
           <div className="inline-flex items-center gap-2 bg-[#e4f9dd] text-[#47be07] px-5 py-2 rounded-full font-semibold text-sm mb-6 shadow-sm">
             <FaCog className="text-[#47be07] animate-spin-slow" />
             Communicate & Execute
@@ -49,16 +66,21 @@ const HeroSection = () => {
               Play Video
             </button>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Right Side with Carousel */}
-        <div className="flex-1 flex flex-col items-center mt-36 w-full">
+        {/* Right Side with Carousel and Image Pop-Up Animation */}
+        <motion.div
+          className="flex-1 flex flex-col items-center mt-36 w-full"
+          initial="hidden"
+          animate="visible"
+          variants={popUpImage}
+        >
           <div className="relative w-full max-w-2xl overflow-hidden">
             <div className="w-full overflow-hidden">
               <motion.div
                 className="flex"
                 animate={{ x: `-${currentIndex * 100}%` }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
+                transition={{ duration: 1.5, ease: "easeInOut" }} // Slowed down to 1.5s
               >
                 {images.map((img, i) => (
                   <img
@@ -83,7 +105,7 @@ const HeroSection = () => {
               />
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <Counting />

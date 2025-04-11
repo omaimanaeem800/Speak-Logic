@@ -27,7 +27,7 @@ const LearningSection = () => {
   }, [inView, booksCount, appsCount, softwaresCount, kitsCount]);
 
   return (
-    <div className="rounded-[30px] px-12 py-16 bg-white shadow-xl transition-all duration-500 hover:shadow-2xl font-sora mt-22">
+    <div className="rounded-[30px] px-12 py-16 bg-white shadow-sm transition-all duration-500 hover:shadow-90 font-sora mt-22">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" ref={ref}>
         
         {/* Section 1: Books */}
