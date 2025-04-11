@@ -21,13 +21,21 @@ const HeroSection = () => {
   // Animation for left section (slide from left)
   const slideInLeft = {
     hidden: { opacity: 0, x: -200 },
-    visible: { opacity: 1, x: 0, transition: { duration: 1.5, ease: "easeOut" } }, // Slowed down to 1.5s
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 1.5, ease: "easeOut" },
+    }, // Slowed down to 1.5s
   };
 
   // Animation for right image (pop-up effect)
   const popUpImage = {
     hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 1.5, ease: "easeOut" } }, // Slowed down to 1.5s
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 1.5, ease: "easeOut" },
+    }, // Slowed down to 1.5s
   };
 
   return (
@@ -35,8 +43,8 @@ const HeroSection = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-16">
         {/* Left Side with Slide-In Animation */}
         <motion.div
-  className="flex-1 mt-16 md:mt-36"
-  initial="hidden"
+          className="flex-1 mt-16 md:mt-36"
+          initial="hidden"
           animate="visible"
           variants={slideInLeft}
         >
@@ -44,7 +52,7 @@ const HeroSection = () => {
             <FaCog className="text-[#47be07] animate-spin-slow" />
             Communicate & Execute
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-600 leading-tight mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-600 leading-tight mb-6">
             We Promote Better <br />
             <span className="text-[#3d960d]">Communication</span>
           </h1>
@@ -70,7 +78,7 @@ const HeroSection = () => {
 
         {/* Right Side with Carousel and Image Pop-Up Animation */}
         <motion.div
-          className="flex-1 flex flex-col items-center mt-36 w-full"
+          className="flex-1 flex flex-col items-center mt-16 md:mt-36 w-full px-4 md:px-0" // <-- added px-4 for mobile, removed it for md+
           initial="hidden"
           animate="visible"
           variants={popUpImage}
@@ -80,7 +88,7 @@ const HeroSection = () => {
               <motion.div
                 className="flex"
                 animate={{ x: `-${currentIndex * 100}%` }}
-                transition={{ duration: 1.5, ease: "easeInOut" }} // Slowed down to 1.5s
+                transition={{ duration: 1.5, ease: "easeInOut" }}
               >
                 {images.map((img, i) => (
                   <img

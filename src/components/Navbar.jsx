@@ -33,10 +33,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`font-sora py-3 sm:py-5 px-4 md:px-12 rounded-full max-w-[1250px] mx-auto fixed top-6 left-0 right-0 z-50 flex items-center justify-between transition-all duration-300 ${
+      className={`font-sora py-3 sm:py-5 px-4 md:px-12 rounded-full max-w-[95%] sm:max-w-[90%] md:max-w-[1250px] mx-auto fixed top-4 left-0 right-0 z-50 flex items-center justify-between transition-all duration-300  ${
         scrolled
-        ? "bg-white/70 backdrop-blur-md shadow-xl border border-gray-200"
-        : "bg-white shadow-md"
+          ? "bg-white/70 backdrop-blur-md shadow-xl border border-gray-200"
+          : "bg-white shadow-md"
       }`}
     >
       {/* Logo */}

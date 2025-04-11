@@ -29,7 +29,7 @@ const CommunicationSection = () => {
   return (
     <section
       ref={ref}
-      className="flex flex-col md:flex-row items-start justify-between px-6 md:px-32 py-16 bg-white font-sans gap-12 leading-relaxed overflow-hidden mb-24 mt-20"
+      className="flex flex-col md:flex-row items-start justify-between px-6 md:px-32 py-16 bg-white font-sans gap-12 leading-relaxed overflow-hidden mb-24 mt-8 md:mt-20"
     >
       {/* Left Container */}
       <motion.div
@@ -40,10 +40,11 @@ const CommunicationSection = () => {
         className="w-full md:w-2/5 space-y-6"
       >
         <p className="text-[#47be07] font-semibold text-md">MORE ABOUT US</p>
-        <h2 className="text-4xl md:text-4xl font-bold text-gray-800 leading-snug">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 leading-snug ">
           Understanding the Root of{" "}
           <span className="text-[#379f00]">Communication Issues</span>
         </h2>
+
         <p className="text-gray-600 text-lg">
           Effective communication is essential for executing everyday functions.
           Errors in internal or external communication can lead to flawed
