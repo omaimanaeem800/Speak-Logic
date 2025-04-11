@@ -1,4 +1,6 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 import phoneImage from "../assets/phone-app-screen.webp";
 import {
   FaCommentDots,
@@ -12,6 +14,12 @@ import {
   FaGlobe,
   FaRegCommentDots,
 } from "react-icons/fa";
+
+// Animation variants
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
 
 const points = [
   {
@@ -70,8 +78,13 @@ const pointsRight = [
 ];
 
 const SolutionSection = () => {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+
   return (
-    <section className="font-sora max-w-7xl mx-auto px-4 py-12 mb-24 mt-28">
+    <section
+      className="font-sora max-w-7xl mx-auto px-4 py-12 mb-24 mt-28"
+      ref={ref}
+    >
       <div className="text-center mb-10">
         <h2 className="text-2xl md:text-3xl font-semibold text-gray-800">
           Our Solution Process & Learning principles
@@ -83,13 +96,20 @@ const SolutionSection = () => {
         </p>
       </div>
 
-      <div className="flex flex-col lg:flex-row items-start justify-between gap-4 lg:gap-2 mt-14">
+      <motion.div
+        className="flex flex-col lg:flex-row items-start justify-between gap-4 lg:gap-2 mt-14"
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        variants={fadeUp}
+      >
         {/* Left Points */}
         <div className="space-y-8 w-full max-w-sm mx-auto">
           {points.map((item, idx) => (
-            <div
+            <motion.div
               key={idx}
               className="flex items-start flex-row-reverse justify-end space-x-reverse space-x-4"
+              variants={fadeUp}
+              transition={{ delay: idx * 0.1 }}
             >
               <div className="bg-[#eaf7dc] p-5 rounded-full">{item.icon}</div>
               <div className="text-left">
@@ -98,23 +118,32 @@ const SolutionSection = () => {
                 </h4>
                 <p className="text-base text-gray-600">{item.desc}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Center Image */}
-        <div className="w-full flex justify-center">
+        <motion.div
+          className="w-full flex justify-center"
+          variants={fadeUp}
+          transition={{ delay: 0.3 }}
+        >
           <img
             src={phoneImage}
             alt="Phone Preview"
             className="w-full max-w-[260px] md:max-w-[300px] h-auto"
           />
-        </div>
+        </motion.div>
 
         {/* Right Points */}
         <div className="space-y-8 w-full max-w-sm mx-auto">
           {pointsRight.map((item, idx) => (
-            <div key={idx} className="flex items-start space-x-4">
+            <motion.div
+              key={idx}
+              className="flex items-start space-x-4"
+              variants={fadeUp}
+              transition={{ delay: idx * 0.1 + 0.3 }}
+            >
               <div className="bg-[#eaf7dc] p-5 rounded-full">{item.icon}</div>
               <div>
                 <h4 className="text-lg font-semibold text-gray-800">
@@ -122,10 +151,10 @@ const SolutionSection = () => {
                 </h4>
                 <p className="text-base text-gray-600">{item.desc}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
