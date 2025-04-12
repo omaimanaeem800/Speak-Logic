@@ -1,89 +1,81 @@
 import React, { useEffect, useState } from "react";
 import { FaBook, FaAppStore, FaLaptop, FaBox } from "react-icons/fa";
-import { useInView } from "react-intersection-observer";  // For triggering animations when in view
+import { useInView } from "react-intersection-observer";
 
 const LearningSection = () => {
   const [booksCount, setBooksCount] = useState(0);
   const [appsCount, setAppsCount] = useState(0);
   const [softwaresCount, setSoftwaresCount] = useState(0);
   const [kitsCount, setKitsCount] = useState(0);
-  
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.5,
-  });
+
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
 
   useEffect(() => {
     if (inView) {
       const interval = setInterval(() => {
-        if (booksCount < 30) setBooksCount((prev) => prev + 1);
-        if (appsCount < 10) setAppsCount((prev) => prev + 1);
-        if (softwaresCount < 5) setSoftwaresCount((prev) => prev + 1);
-        if (kitsCount < 100) setKitsCount((prev) => prev + 1);
-      }, 50);
-
+        setBooksCount((prev) => (prev < 30 ? prev + 1 : prev));
+        setAppsCount((prev) => (prev < 10 ? prev + 1 : prev));
+        setSoftwaresCount((prev) => (prev < 5 ? prev + 1 : prev));
+        setKitsCount((prev) => (prev < 10 ? prev + 1 : prev));
+      }, 40);
       return () => clearInterval(interval);
     }
-  }, [inView, booksCount, appsCount, softwaresCount, kitsCount]);
+  }, [inView]);
+
+  const features = [
+    {
+      icon: <FaBook size={28} />,
+      count: booksCount,
+      label: "Books",
+      sub: "To help with the learning of the principle",
+    },
+    {
+      icon: <FaAppStore size={28} />,
+      count: appsCount,
+      label: "Apps",
+      sub: "To help with the application of the principle",
+    },
+    {
+      icon: <FaLaptop size={28} />,
+      count: softwaresCount,
+      label: "Softwares",
+      sub: "To help with the application of the principle",
+    },
+    {
+      icon: <FaBox size={28} />,
+      count: "10",
+      label: "Learning Kits",
+      sub: "To help with the teaching of the principle",
+    },
+  ];
 
   return (
-    <div className="rounded-[30px] px-12 py-16 bg-white shadow-sm transition-all duration-500 hover:shadow-90 font-sora mt-22">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" ref={ref}>
-        
-        {/* Section 1: Books */}
-        <div className="flex flex-col items-start text-left space-y-2 hover:scale-105 transform transition-all duration-300">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#e8f7d4] text-[#41aa09] hover:bg-[#41aa09] hover:text-white shadow-lg transition-all duration-300">
-              <FaBook size={28} />
-            </div>
-            <div>
-              <p className="font-semibold text-xl text-[#41aa09]">{booksCount}+ Books</p>
-              <p className="text-sm text-gray-600">Logic-based Learning</p>
+    <section
+      ref={ref}
+      className="bg-gradient-to-b from-[#f4fff6] to-[#fafffc] py-20 px-6 md:px-16 lg:px-32"
+    >
+      <div className="flex flex-wrap justify-center gap-8">
+        {features.map((item, index) => (
+          <div
+            key={index}
+            className="group w-full sm:w-[280px] lg:w-[250px] bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.05] relative overflow-hidden"
+          >
+            {/* Animated background glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#e0ffe3] to-[#d2f9ff] opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl z-0" />
+
+            <div className="relative z-10 flex flex-col items-center text-center space-y-3">
+              <div className="w-14 h-14 rounded-full bg-[#e5fbe2] text-[#3dae0b] flex items-center justify-center text-2xl shadow-sm">
+                {item.icon}
+              </div>
+              <h3 className="text-xl font-bold text-[#33a102]">
+                {item.count}+ {item.label}
+              </h3>
+              <p className="text-sm text-gray-600">{item.sub}</p>
             </div>
           </div>
-        </div>
-
-        {/* Section 2: Apps */}
-        <div className="flex flex-col items-start text-left space-y-2 hover:scale-105 transform transition-all duration-300">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#e8f7d4] text-[#41aa09] hover:bg-[#41aa09] hover:text-white shadow-lg transition-all duration-300">
-              <FaAppStore size={28} />
-            </div>
-            <div>
-              <p className="font-semibold text-xl text-[#41aa09]">{appsCount}+ Apps</p>
-              <p className="text-sm text-gray-600">For Problem Solving</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Section 3: Softwares */}
-        <div className="flex flex-col items-start text-left space-y-2 hover:scale-105 transform transition-all duration-300">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#e8f7d4] text-[#41aa09] hover:bg-[#41aa09] hover:text-white shadow-lg transition-all duration-300">
-              <FaLaptop size={28} />
-            </div>
-            <div>
-              <p className="font-semibold text-xl text-[#41aa09]">{softwaresCount}+ Softwares</p>
-              <p className="text-sm text-gray-600">Learning & Application</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Section 4: Learning Kits */}
-        <div className="flex flex-col items-start text-left space-y-2 hover:scale-105 transform transition-all duration-300">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#e8f7d4] text-[#41aa09] hover:bg-[#41aa09] hover:text-white shadow-lg transition-all duration-300">
-              <FaBox size={28} />
-            </div>
-            <div>
-              <p className="font-semibold text-xl text-[#41aa09]">{kitsCount} Learning Kits</p>
-              <p className="text-sm text-gray-600">Learning kits for All</p>
-            </div>
-          </div>
-        </div>
-
+        ))}
       </div>
-    </div>
+    </section>
   );
 };
 

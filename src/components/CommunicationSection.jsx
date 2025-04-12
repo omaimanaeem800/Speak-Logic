@@ -1,6 +1,6 @@
 import React from "react";
 import rightImg from "../assets/rightImg.png";
-import { FaUserTie, FaPhone, FaCircleCheck } from "react-icons/fa6";
+import { FaCircleCheck } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
@@ -71,40 +71,6 @@ const CommunicationSection = () => {
             >
               <FaCircleCheck className="text-[#379f00] w-6 h-6 mt-1" />
               <p className="text-gray-700 text-base">{item}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Cards */}
-        <div className="flex flex-col sm:flex-row gap-4 pt-6">
-          {[
-            {
-              icon: <FaUserTie className="text-[#379f00] text-xl" />,
-              title: "Mr. XYZ",
-              subtitle: "CEO & Founder",
-            },
-            {
-              icon: <FaPhone className="text-[#379f00] text-xl" />,
-              title: "Call us anytime",
-              subtitle: "+123 xxxxxx xxxx",
-            },
-          ].map((card, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ scale: 1.05 }}
-              className="bg-white px-5 py-4 flex items-center gap-4 w-full sm:w-1/2 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-              variants={fadeInLeft}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              custom={6 + index}
-            >
-              {card.icon}
-              <div>
-                <p className="text-gray-800 font-bold text-base">
-                  {card.title}
-                </p>
-                <p className="text-gray-600 text-sm">{card.subtitle}</p>
-              </div>
             </motion.div>
           ))}
         </div>
