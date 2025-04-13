@@ -54,13 +54,13 @@ const FaqSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <div className="flex flex-col lg:flex-row px-6 md:px-32 py-16 items-start gap-12 font-sora leading-relaxed mb-28">
+    <div className="flex flex-col lg:flex-row px-6 md:px-32 py-16 items-start gap-12 font-sora leading-relaxed mb-12"> {/* Reduced margin-bottom */}
       {/* Left Section */}
       <div className="w-full lg:w-[40%]">
         <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-6">
           Have a question? Check out the FAQ
         </h2>
-        <p className="text-gray-600 mb-10">
+        <p className="text-gray-600 mb-8"> {/* Reduced bottom margin */}
           Here are some compiled questions and answers. If you have more
           questions, feel free to contact us.
         </p>
@@ -87,7 +87,7 @@ const FaqSection = () => {
             >
               <div
                 onClick={() => setOpenIndex(isOpen ? null : idx)}
-                className={`bg-white shadow-lg rounded-lg p-6 mb-4 cursor-pointer hover:scale-105 hover:shadow-xl transition-all ${
+                className={`bg-white shadow-lg rounded-lg p-6 mb-2 cursor-pointer hover:scale-105 hover:shadow-xl transition-all ${ // Reduced bottom margin here
                   isOpen ? "border-l-4 border-green-500" : "border-l-4 border-transparent"
                 }`}
               >

@@ -20,7 +20,7 @@ const BookCarousel = () => {
   };
 
   return (
-    <div className="w-full h-screen bg-[#d0f7d8] flex items-center justify-center overflow-hidden relative">
+    <div className="w-full h-[80vh] bg-[#d0f7d8] flex items-center justify-center overflow-hidden relative">
       <div className="relative w-full max-w-5xl h-96 flex justify-center items-center">
         <div className="relative w-full h-full flex justify-center items-center">
           {books.map((book, index) => {

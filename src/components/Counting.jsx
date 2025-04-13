@@ -1,82 +1,78 @@
 import React, { useEffect, useState } from "react";
 import { FaBook, FaAppStore, FaLaptop, FaBox } from "react-icons/fa";
-import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
-const LearningSection = () => {
-  const [booksCount, setBooksCount] = useState(0);
-  const [appsCount, setAppsCount] = useState(0);
-  const [softwaresCount, setSoftwaresCount] = useState(0);
-  const [kitsCount, setKitsCount] = useState(0);
-
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 });
+const AnimatedCounter = ({ target }) => {
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (inView) {
-      const interval = setInterval(() => {
-        setBooksCount((prev) => (prev < 30 ? prev + 1 : prev));
-        setAppsCount((prev) => (prev < 10 ? prev + 1 : prev));
-        setSoftwaresCount((prev) => (prev < 5 ? prev + 1 : prev));
-        setKitsCount((prev) => (prev < 10 ? prev + 1 : prev));
-      }, 40);
-      return () => clearInterval(interval);
-    }
-  }, [inView]);
+    let start = 0;
+    const duration = 1000; // 1 second
+    const stepTime = Math.abs(Math.floor(duration / target));
+    const counter = setInterval(() => {
+      start += 1;
+      setCount(start);
+      if (start >= target) clearInterval(counter);
+    }, stepTime);
 
-  const features = [
+    return () => clearInterval(counter);
+  }, [target]);
+
+  return <>{count}+</>;
+};
+
+const LearningStats = () => {
+  const items = [
     {
-      icon: <FaBook size={28} />,
-      count: booksCount,
-      label: "Books",
-      sub: "To help with the learning of the principle",
+      icon: <FaBook size={24} />,
+      number: 30,
+      label: "Books|Logic-based Learning",
+      desc: "To help with the learning of the principle",
     },
     {
-      icon: <FaAppStore size={28} />,
-      count: appsCount,
-      label: "Apps",
-      sub: "To help with the application of the principle",
+      icon: <FaAppStore size={24} />,
+      number: 10,
+      label: "Apps|For Problem Solving",
+      desc: "To help with the application of the principle",
     },
     {
-      icon: <FaLaptop size={28} />,
-      count: softwaresCount,
-      label: "Softwares",
-      sub: "To help with the application of the principle",
+      icon: <FaLaptop size={24} />,
+      number: 5,
+      label: "Softwares|Learning & Application",
+      desc: "To help with the application of the principle",
     },
     {
-      icon: <FaBox size={28} />,
-      count: "10",
-      label: "Learning Kits",
-      sub: "To help with the teaching of the principle",
+      icon: <FaBox size={24} />,
+      number: 10,
+      label: "Learning Kits|Learning kits for All",
+      desc: "To help with the teaching of the principle",
     },
   ];
 
   return (
-    <section
-      ref={ref}
-      className="bg-gradient-to-b from-[#f4fff6] to-[#fafffc] py-20 px-6 md:px-16 lg:px-32"
+    <motion.div
+      className="bg-white rounded-[40px] px-2 py-10 mx-4 md:ml-0 mt-20 shadow-sm w-full"
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
     >
-      <div className="flex flex-wrap justify-center gap-8">
-        {features.map((item, index) => (
-          <div
-            key={index}
-            className="group w-full sm:w-[280px] lg:w-[250px] bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.05] relative overflow-hidden"
-          >
-            {/* Animated background glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#e0ffe3] to-[#d2f9ff] opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl z-0" />
-
-            <div className="relative z-10 flex flex-col items-center text-center space-y-3">
-              <div className="w-14 h-14 rounded-full bg-[#e5fbe2] text-[#3dae0b] flex items-center justify-center text-2xl shadow-sm">
-                {item.icon}
-              </div>
-              <h3 className="text-xl font-bold text-[#33a102]">
-                {item.count}+ {item.label}
-              </h3>
-              <p className="text-sm text-gray-600">{item.sub}</p>
+      <div className="flex flex-col md:flex-row justify-between items-center gap-9">
+        {items.map((item, idx) => (
+          <div key={idx} className="flex items-center space-x-4 w-full md:w-auto group">
+            <div className="bg-[#e8f7d4] text-[#41aa09] rounded-full w-14 h-12 flex items-center justify-center shadow-md transition-all duration-300 ease-in-out transform group-hover:scale-110 group-hover:bg-green-600 group-hover:text-white">
+              {item.icon}
+            </div>
+            <div>
+              <p className="text-[#2c9605] font-semibold text-lg">
+                <AnimatedCounter target={item.number} /> {item.label.replace(/^[0-9+]+\s?/, '')}
+              </p>
+              <p className="text-gray-600 text-sm mt-1">{item.desc}</p>
             </div>
           </div>
         ))}
       </div>
-    </section>
+    </motion.div>
   );
 };
 
-export default LearningSection;
+export default LearningStats;
