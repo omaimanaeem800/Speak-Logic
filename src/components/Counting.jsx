@@ -51,7 +51,7 @@ const LearningStats = () => {
 
   return (
     <motion.div
-      className="bg-white rounded-[40px] px-2 py-10 mx-4 md:ml-0 mt-20 shadow-sm w-full"
+      className="bg-white rounded-[40px] px-2 py-10 mx-auto mt-20 shadow-sm w-full max-w-6xl"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
@@ -64,7 +64,8 @@ const LearningStats = () => {
             </div>
             <div>
               <p className="text-[#2c9605] font-semibold text-lg">
-                <AnimatedCounter target={item.number} /> {item.label.replace(/^[0-9+]+\s?/, '')}
+                <AnimatedCounter target={item.number} />{" "}
+                {item.label.replace(/^[0-9+]+\s?/, "")}
               </p>
               <p className="text-gray-600 text-sm mt-1">{item.desc}</p>
             </div>
